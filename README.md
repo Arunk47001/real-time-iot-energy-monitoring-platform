@@ -54,6 +54,7 @@ Wait ~30s for Kafka and InfluxDB to become healthy, then open:
 |----------|------------------------|-------------------|
 | Grafana  | http://localhost:3000  | admin / admin12345 |
 | InfluxDB | http://localhost:8086  | admin / admin12345 |
+| Kafka UI | http://localhost:8080  | -                 |
 | Kafka    | localhost:9092 (host)  | -                 |
 
 The **IoT Energy Monitoring** dashboard is provisioned automatically and

@@ -10,8 +10,8 @@ order you need them. For *understanding* the system, see
 
 - **Docker Desktop** running (check: `docker info` exits without error)
 - Nothing else — no local Python, Kafka or InfluxDB installs needed.
-- Ports **3000** (Grafana), **8086** (InfluxDB) and **9092** (Kafka) must be
-  free on your machine.
+- Ports **3000** (Grafana), **8080** (Kafka UI), **8086** (InfluxDB) and
+  **9092** (Kafka) must be free on your machine.
 
 Optional: tweak [.env](../.env) before first start (device count, interval,
 credentials). Defaults work fine.
@@ -49,6 +49,7 @@ Expect four `[OK]` stages and a final "Pipeline healthy." Then open:
 |---|---|---|
 | Grafana dashboard | http://localhost:3000 → Dashboards → IoT Energy Monitoring | admin / admin12345 |
 | InfluxDB UI | http://localhost:8086 | admin / admin12345 |
+| Kafka UI | http://localhost:8080 (topics, live messages, consumer lag) | none |
 
 ---
 
@@ -161,5 +162,5 @@ docker compose up -d --build
 | Port already in use on startup | `netstat -ano \| findstr :3000` (PowerShell) | stop the conflicting app or change the host port in `docker-compose.yml` |
 | Lag keeps growing | processor logs for slow/failed writes | restart processor; check InfluxDB health |
 
-Container names: `iot-kafka`, `iot-influxdb`, `iot-grafana`,
+Container names: `iot-kafka`, `iot-kafka-ui`, `iot-influxdb`, `iot-grafana`,
 `iot-simulator`, `iot-processor`.

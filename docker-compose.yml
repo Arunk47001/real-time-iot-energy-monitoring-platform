@@ -51,6 +51,22 @@ services:
     restart: "no"
 
   # ------------------------------------------------------------------
+  # Kafka UI (browse topics, messages, consumer groups, lag)
+  # ------------------------------------------------------------------
+  kafka-ui:
+    image: ghcr.io/kafbat/kafka-ui:v1.1.0
+    container_name: iot-kafka-ui
+    ports:
+      - "8080:8080"
+    environment:
+      KAFKA_CLUSTERS_0_NAME: iot-local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
+      DYNAMIC_CONFIG_ENABLED: "true"
+    depends_on:
+      kafka:
+        condition: service_healthy
+
+  # ------------------------------------------------------------------
   # InfluxDB 2.x (time-series storage)
   # ------------------------------------------------------------------
   influxdb:
